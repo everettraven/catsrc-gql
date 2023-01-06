@@ -1,0 +1,67 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+## All Schemas based on the File-Based Catalog Schema found at:
+## https://olm.operatorframework.io/docs/reference/file-based-catalogs/
+
+scalar Any
+
+type OlmPackage {
+  schema: String! 
+  name: String!
+  description: String
+  defaultChannel: String!
+  icon: Icon
+}
+
+type Icon {
+  base64data: String!
+  mediatype: String!
+}
+
+type OlmBundle {
+  schema: String!
+  package: String!
+  name: String!
+  image: String!
+  properties: [Property!]!
+  relatedImages: [RelatedImage!]
+}
+
+type Property {
+  type: String!
+  value: Any
+}
+
+type RelatedImage {
+  image: String!
+  name: String
+}
+
+type OlmChannel {
+  schema: String!
+  package: String!
+  name: String!
+  entries: [ChannelEntry!]!
+}
+
+type ChannelEntry {
+  name: String!
+  replaces: String
+  skips: [String!]
+  skipRange: String
+}
+
+type OlmMeta {
+  schema: String!
+  package: String!
+  blob: Any!
+}
+
+type Query {
+  packages(packageName: String): [OlmPackage!]
+  bundles(packageName: String, bundleName: String): [OlmBundle!]
+  channels(packageName: String, channelName: String): [OlmChannel!]
+  metas(packageName: String, schema: String): [OlmMeta!]
+}

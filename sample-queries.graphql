@@ -1,0 +1,218 @@
+# This file is meant to hold some sample queries that can be used to:
+# 1. Get a base understanding of how the GraphQL API works
+# 2. Serve as starting point for your own GraphQL queries
+
+query ListAllPackages {
+  packages {
+    name
+  }
+}
+
+## This query uses variables, ensure that when you are making
+## your request you set the variables for the query
+query GetSpecificPackage ($package: String) {
+  packages(packageName: $package) {
+    name
+    defaultChannel
+  }
+}
+
+query ListAllBundles {
+  bundles {
+    package
+    name
+    image
+  }
+}
+
+## This query uses variables, ensure that when you are making
+## your request you set the variables for the query
+query ListAllBundlesForSpecificPackage ($package: String){
+  bundles(packageName: $package) {
+    package
+    name
+    image
+  }
+}
+
+## This query uses variables, ensure that when you are making
+## your request you set the variables for the query
+query GetSpecificBundle ($bundle: String) {
+  bundles(bundleName: $bundle) {
+    package
+    name
+    image
+  }
+}
+
+query ListAllChannels {
+  channels {
+    name
+    package
+  }
+}
+
+## This query uses variables, ensure that when you are making
+## your request you set the variables for the query
+query ListChannelsForSpecificPackage ($package: String) {
+  channels(packageName: $package) {
+    name
+    entries {
+      name
+      replaces
+      skips
+      skipRange
+    }
+  }
+}
+
+## This query uses variables, ensure that when you are making
+## your request you set the variables for the query
+query ListChannelsThatMatchSpecificName ($channel: String) {
+  channels(channelName: $channel) {
+    name
+    package
+  }
+}
+
+## This query uses variables, ensure that when you are making
+## your request you set the variables for the query
+query GetSpecificChannelForSpecificPackage ($package: String, $channel: String) {
+  channels(packageName: $package, channelName: $channel) {
+    name
+    entries {
+      name
+      replaces
+      skips
+      skipRange
+    }
+  }
+}
+
+query ListAllMetas {
+	metas {
+    schema
+    package
+    blob
+  }
+}
+
+query AllMetasWithSpecificSchema {
+	metas(schema: "other.schema") {
+    schema
+    package
+    blob
+  }
+}
+
+query AllMetasWithSpecificPackage {
+	metas(packageName: "cc-operator") {
+    schema
+    package
+    blob
+  }
+}
+
+query AllMetasWithSpecificSchemaForSpecificPackage {
+	metas(packageName: "cc-operator", schema: "other.schema") {
+    schema
+    package
+    blob
+  }
+}
+
+
+query GetEntireCatalog {
+  packages {
+    schema
+    name
+    description
+    defaultChannel
+    icon {
+      mediatype
+      base64data
+    }
+  }
+  bundles {
+    schema
+    package
+    name
+    image
+    properties {
+      type
+      value
+    }
+    relatedImages {
+      image
+      name
+    }
+  }
+  channels {
+    schema
+    package
+    name
+    entries {
+      name
+      replaces
+      skips
+      skipRange
+    }
+  }
+  metas {
+    schema
+    package
+    blob
+  }
+}
+
+## This query uses variables, ensure that when you are making
+## your request you set the variables for the query
+query GetAllCatalogInfoForSpecificPackage($package: String) {
+  packages(packageName: $package) {
+    schema
+    name
+    description
+    defaultChannel
+    icon {
+      mediatype
+      base64data
+    }
+  }
+  bundles(packageName: $package) {
+    schema
+    package
+    name
+    image
+    properties {
+      type
+      value
+    }
+    relatedImages {
+      image
+      name
+    }
+  }
+  channels(packageName: $package) {
+    schema
+    package
+    name
+    entries {
+      name
+      replaces
+      skips
+      skipRange
+    }
+  }
+  metas(packageName: $package) {
+    schema
+    package
+    blob
+  }
+}
+
+## Example Variables:
+{
+  "package": "cc-operator",
+  "bundle": "cc-operator.v0.1.0",
+  "channel": "alpha"
+}
