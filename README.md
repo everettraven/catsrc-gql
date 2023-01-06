@@ -15,7 +15,7 @@ The advantages of using GraphQL:
 This tutorial will guide you through serving a FBC via GraphQL with the `catsrc-gql` binary.
 
 ### Prerequisites
-In order to properly
+In order to properly build and run `catsrc-gql` you will need:
 - Go 1.19
 - Docker
 - GNU Make (optional but recommended)
