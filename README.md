@@ -51,7 +51,7 @@ For simplicity we will serve from an image, however the `catsrc-gql` binary does
 
 For the FBC image, lets use the quay.io/operatorhubio/catalog:latest (image of community-operators built via: [k8s-operatorhub/community-operators](https://github.com/k8s-operatorhub/community-operators)
 ```
-./catsrc-gql serve --from-image quay.io/operatorhubio/catalog:latest
+./catsrc-gql serve quay.io/operatorhubio/catalog:latest
 ```
 
 After a few seconds you should see an output similar to:
