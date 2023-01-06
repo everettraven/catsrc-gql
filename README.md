@@ -653,5 +653,3 @@ This is the end of the tutorial as the goal was to just give a very basic feel o
 Feel free to play around some more and craft some queries of your own! Here are a few resources that may be helpful:
 - [sample-queries.graphql](./sample-queries.graphql) - file in this repo with some sample queries used during the process of building and testing this prototype
 - [GraphQL Queries Documentation](https://graphql.org/learn/queries/) - great documentation on writing queries from the GraphQL Foundation's website
-
-## Demo
